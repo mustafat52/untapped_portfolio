@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mufaddal Taj — Reels & Growth Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/png" href="untapped-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#e3e9f5;
+    --surface:#eef2fb;
+    --surface-2:#dfe6f3;
+    --border:#c3cee3;
+    --text:#161b2e;
+    --text-muted:#5b6478;
+    --accent:#ff6b4a;
+    --accent-text:#d84a29;
+    --accent-ink:#fff8f4;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--canvas);
+    color:var(--text);
+    font-family:'Inter',ui-sans-serif,system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Bricolage Grotesque',ui-sans-serif,sans-serif;
+    font-weight:800;
+    letter-spacing:-0.02em;
+    line-height:1.02;
+  }
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  img{max-width:100%;display:block;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(227,233,245,0.8);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  header.scrolled{
+    border-bottom-color:var(--border);
+    background:rgba(227,233,245,0.95);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;max-width:1180px;margin:0 auto;
+    transition:padding .3s ease;
+  }
+  header.scrolled nav{padding:13px 32px;}
+  .nav-links a{position:relative;}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:-4px;width:0;height:1px;
+    background:var(--accent);transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Bricolage Grotesque';font-weight:800;font-size:18px;
+  }
+  .logo-mark{
+    width:34px;height:34px;border-radius:50%;
+    object-fit:cover;flex-shrink:0;
+    box-shadow:0 0 0 1.5px var(--border), 0 0 0 3px var(--canvas);
+  }
+  .nav-links{display:flex;gap:36px;align-items:center;}
+  .nav-links a{
+    font-size:11.5px;color:var(--text-muted);transition:color .2s;
+    font-family:'JetBrains Mono';text-transform:uppercase;letter-spacing:0.07em;
+  }
+  .nav-links a:hover{color:var(--text);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;border-radius:100px;
+    font-size:14px;font-weight:600;
+    border:1px solid transparent;
+    transition:transform .18s ease, background .18s ease;
+    cursor:pointer;white-space:nowrap;
+  }
+  .btn-primary{background:var(--accent);color:var(--accent-ink);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{border-color:var(--border);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--text-muted);}
+  .nav-cta{display:none;}
+  @media(min-width:720px){.nav-cta{display:inline-flex;}}
+  .nav-links{display:none;}
+  @media(min-width:900px){.nav-links{display:flex;}}
+
+  /* HERO */
+  .hero{
+    padding:88px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:-20% -10% auto -10%;height:900px;
+    background:radial-gradient(60% 60% at 68% 20%, rgba(255,107,74,0.14), transparent 70%),
+               radial-gradient(40% 40% at 15% 60%, rgba(74,110,255,0.14), transparent 70%);
+    pointer-events:none;z-index:0;
+  }
+  .spotlight{
+    position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(340px 340px at var(--mx,50%) var(--my,20%), rgba(255,107,74,0.14), transparent 70%);
+    opacity:0;transition:opacity .4s ease;
+  }
+  .hero:hover .spotlight{opacity:1;}
+  .blob{
+    position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;z-index:0;
+    opacity:0.55;
+  }
+  .blob-a{width:340px;height:340px;background:radial-gradient(circle,rgba(255,107,74,0.35),transparent 70%);
+    top:-80px;left:-60px;animation:driftA 16s ease-in-out infinite;}
+  .blob-b{width:280px;height:280px;background:radial-gradient(circle,rgba(74,110,255,0.30),transparent 70%);
+    bottom:-60px;right:10%;animation:driftB 20s ease-in-out infinite;}
+  @keyframes driftA{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(40px,30px) scale(1.15);}
+  }
+  @keyframes driftB{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(-30px,-24px) scale(1.1);}
+  }
+  @media(prefers-reduced-motion:reduce){.blob-a,.blob-b{animation:none;}}
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(var(--border) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:linear-gradient(180deg, rgba(0,0,0,0.35), transparent 75%);
+    mask-image:linear-gradient(180deg, rgba(0,0,0,0.35), transparent 75%);
+    opacity:0.5;pointer-events:none;z-index:0;
+  }
+  .hero .wrap{position:relative;z-index:1;}
+  .hero-grid{
+    display:grid;grid-template-columns:1fr;gap:56px;align-items:center;
+  }
+  @media(min-width:960px){.hero-grid{grid-template-columns:1.05fr 0.95fr;}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono';font-size:12px;letter-spacing:0.08em;
+    color:var(--accent-text);text-transform:uppercase;margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .hero h1{
+    font-size:clamp(48px,9vw,118px);
+    letter-spacing:-0.03em;
+    margin-bottom:26px;
+    line-height:0.94;
+  }
+  .hero h1 .stroke{
+    display:inline-block;position:relative;
+  }
+  .hero-scribble{
+    position:absolute;pointer-events:none;
+    width:100px;height:56px;
+    top:-50px;right:20px;
+    opacity:0;
+  }
+  .hero-scribble path{
+    stroke:var(--accent-text);stroke-width:2;fill:none;
+    stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:220;stroke-dashoffset:220;
+  }
+  .hero-scribble.draw{opacity:1;transition:opacity .3s ease;}
+  .hero-scribble.draw path{stroke-dashoffset:0;transition:stroke-dashoffset 1.2s ease .1s;}
+  @media(max-width:760px){.hero-scribble{display:none;}}
+  .hero h1 em{font-style:normal;color:var(--accent-text);}
+  .hero p.lead{
+    font-size:18px;color:var(--text-muted);max-width:480px;margin-bottom:34px;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:48px;}
+  .stat-row{display:flex;flex-wrap:wrap;gap:36px;border-top:1px solid var(--border);padding-top:26px;}
+  .stat b{
+    display:block;font-family:'Bricolage Grotesque';font-size:26px;font-weight:800;
+  }
+  .stat span{font-size:13px;color:var(--text-muted);}
+
+  /* PHONE / REEL CARD - signature element */
+  .reel-stack{position:relative;height:460px;will-change:transform;}
+  .reel-card{
+    position:absolute;width:190px;aspect-ratio:9/16;border-radius:22px;
+    border:1px solid var(--border);
+    overflow:hidden;background:var(--surface);
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+    cursor:pointer;transform-origin:center center;
+    opacity:0;
+  }
+  .reel-card.settled{transition:box-shadow .35s ease;}
+  .reel-card:hover{box-shadow:0 40px 80px -18px rgba(0,0,0,0.75);}
+  .reel-card .fill{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:14px;
+  }
+  .reel-card .progress{
+    position:absolute;top:10px;left:10px;right:10px;height:2px;
+    background:rgba(255,255,255,0.25);border-radius:2px;overflow:hidden;
+  }
+  .reel-card .progress i{display:block;height:100%;background:#fff;}
+  .reel-card.playing .progress i{animation:fillBar 2.2s linear infinite;}
+  @keyframes fillBar{0%{width:0%;}100%{width:100%;}}
+  .reel-card .cap{font-size:11px;font-weight:600;color:#fff;line-height:1.3;}
+  .reel-card .tag{
+    font-family:'JetBrains Mono';font-size:9px;color:rgba(255,255,255,0.75);
+    margin-bottom:6px;letter-spacing:0.04em;
+  }
+  .reel-card .side{
+    position:absolute;right:10px;bottom:52px;display:flex;flex-direction:column;gap:14px;
+    align-items:center;
+  }
+  .reel-card .chrome{
+    position:absolute;top:18px;left:10px;right:10px;
+    display:flex;align-items:center;justify-content:space-between;
+    font-family:'JetBrains Mono';font-size:8px;color:rgba(255,255,255,0.55);
+    letter-spacing:0.04em;
+  }
+  .reel-card .chrome .music{display:flex;align-items:center;gap:4px;}
+  .reel-card .user{
+    display:flex;align-items:center;gap:6px;margin-bottom:8px;
+  }
+  .reel-card .user .avatar{
+    width:20px;height:20px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),#7a2f5a);
+    flex-shrink:0;
+  }
+  .reel-card .user span{font-size:10px;font-weight:600;color:#fff;}
+  .reel-card .user .follow{
+    font-size:8px;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.35);
+    border-radius:100px;padding:2px 6px;margin-left:2px;
+  }
+  .reel-card .side div{
+    width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.14);
+    display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;
+    position:relative;
+  }
+  .reel-card .side .count{
+    position:absolute;top:100%;left:50%;transform:translateX(-50%);
+    font-size:7px;color:rgba(255,255,255,0.6);white-space:nowrap;margin-top:2px;
+  }
+  .play-icon{
+    position:absolute;top:50%;left:50%;
+    width:44px;height:44px;border-radius:50%;
+    background:rgba(0,0,0,0.35);backdrop-filter:blur(2px);
+    display:flex;align-items:center;justify-content:center;
+    transform:translate(-50%,-50%) scale(.7);
+    opacity:0;transition:opacity .25s ease, transform .25s ease;
+    pointer-events:none;z-index:5;
+  }
+  .play-icon::after{
+    content:"";width:0;height:0;margin-left:3px;
+    border-top:8px solid transparent;border-bottom:8px solid transparent;
+    border-left:13px solid #fff;
+  }
+  .reel-card:hover .play-icon,.flip-card:hover .play-icon{
+    opacity:1;transform:translate(-50%,-50%) scale(1);
+  }
+  .r1{background:linear-gradient(160deg,#232c52,#0e1120 70%);top:0;left:6%;--rot:-7deg;--enter:0;z-index:2;}
+  .r2{background:linear-gradient(160deg,#1a2140,#10121f 70%);top:52px;left:38%;--rot:4deg;--enter:150;z-index:3;}
+  .r3{background:linear-gradient(160deg,#1c1f38,#0e0f1c 70%);top:110px;left:66%;--rot:-3deg;--enter:300;z-index:1;display:none;}
+  @media(min-width:520px){.r3{display:block;}}
+
+  /* SECTIONS */
+  section{padding:88px 0;}
+  .statement{
+    background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    padding:100px 0;
+  }
+  .statement-text{
+    font-family:'Bricolage Grotesque';font-weight:800;
+    font-size:clamp(32px,6.4vw,76px);
+    letter-spacing:-0.03em;line-height:1.04;
+    max-width:920px;color:var(--text-muted);
+  }
+  .statement-text span{color:var(--text);}
+  .section-head{max-width:600px;margin-bottom:56px;}
+  .section-head .eyebrow{color:var(--text-muted);}
+  .section-head .eyebrow::before{background:var(--text-muted);}
+  h2{font-size:clamp(32px,5.2vw,58px);letter-spacing:-0.025em;line-height:1.02;}
+  .section-head p{color:var(--text-muted);margin-top:14px;font-size:16px;max-width:520px;}
+  .section-head-row{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:24px;margin-bottom:56px;flex-wrap:wrap;
+  }
+  .work-index{
+    font-family:'JetBrains Mono';font-size:15px;color:var(--text);
+    border-top:1px solid var(--border);padding-top:10px;min-width:70px;
+    text-align:right;
+  }
+  .work-index span{color:var(--text-muted);}
+
+  /* PILLARS */
+  .pillars{display:grid;gap:20px;grid-template-columns:1fr;}
+  @media(min-width:760px){.pillars{grid-template-columns:repeat(3,1fr);}}
+  .pillar{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:32px 26px;
+  }
+  .pillar .num{font-family:'JetBrains Mono';color:var(--accent-text);font-size:13px;margin-bottom:22px;display:block;}
+  .pillar h3{font-size:20px;margin-bottom:10px;font-weight:700;}
+  .pillar p{color:var(--text-muted);font-size:14.5px;}
+
+  /* PROOF STRIP */
+  .proof{
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    padding:22px 0;overflow:hidden;
+  }
+  .marquee{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+  .marquee-track{
+    display:flex;gap:56px;white-space:nowrap;width:max-content;
+    animation:scrollMarquee 26s linear infinite;
+  }
+  .proof:hover .marquee-track{animation-play-state:paused;}
+  @keyframes scrollMarquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .proof-item{font-family:'JetBrains Mono';font-size:13px;color:var(--text-muted);flex-shrink:0;}
+  .proof-item b{color:var(--text);font-weight:600;}
+  @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;overflow-x:auto;}}
+  .proof-item b{color:var(--text);font-weight:600;}
+
+  /* METHOD */
+  .method-list{display:flex;flex-direction:column;}
+  .method-item{
+    display:grid;grid-template-columns:70px 1fr;gap:24px;
+    padding:28px 0;border-top:1px solid var(--border);
+  }
+  .method-item:last-child{border-bottom:1px solid var(--border);}
+  .method-item .num{font-family:'JetBrains Mono';color:var(--accent-text);font-size:15px;}
+  .method-item h3{font-size:19px;margin-bottom:6px;}
+  .method-item p{color:var(--text-muted);font-size:14.5px;max-width:520px;}
+
+  /* WORK GRID — tap-to-flip client cards */
+  .work-grid{
+    display:grid;grid-template-columns:1fr;gap:20px;
+  }
+  @media(min-width:640px){.work-grid{grid-template-columns:repeat(3,1fr);}}
+
+  .flip-card{
+    aspect-ratio:9/16;perspective:1400px;cursor:default;
+    border-radius:16px;outline:none;
+  }
+  .flip-card:focus-visible{box-shadow:0 0 0 3px var(--accent);border-radius:16px;}
+  .flip-inner{
+    position:relative;width:100%;height:100%;
+    transition:transform .7s cubic-bezier(.2,.8,.2,1);
+    transform-style:preserve-3d;
+  }
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-card:hover .flip-inner,.flip-card:focus-visible .flip-inner{transform:rotateY(180deg);}
+
+  .flip-front,.flip-back{
+    position:absolute;inset:0;border-radius:16px;border:1px solid var(--border);
+    overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  }
+  .flip-front .fill{position:absolute;inset:0;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;gap:5px;z-index:2;}
+  .reel-video{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;z-index:1;background:transparent;
+  }
+  .flip-front .views{font-family:'JetBrains Mono';font-size:11px;color:#fff;background:rgba(0,0,0,0.35);
+    align-self:flex-start;padding:4px 8px;border-radius:100px;}
+  .flip-front .cap{font-size:12px;font-weight:600;color:#fff;line-height:1.3;}
+  .flip-front .progress{
+    position:absolute;top:8px;left:8px;right:8px;height:2px;
+    background:rgba(255,255,255,0.25);border-radius:2px;overflow:hidden;z-index:2;
+  }
+  .flip-front .progress i{display:block;height:100%;width:0%;background:#fff;}
+  .flip-card.playing .flip-front .progress i{animation:fillBar 2s linear infinite;}
+  .brand-row{
+    position:absolute;top:20px;left:10px;right:10px;z-index:3;
+    display:flex;align-items:center;gap:7px;
+  }
+  .brand-label{
+    font-family:'JetBrains Mono';font-size:10.5px;font-weight:600;color:rgba(255,255,255,0.85);
+    text-transform:uppercase;letter-spacing:0.05em;
+    background:rgba(0,0,0,0.3);padding:4px 9px;border-radius:100px;
+  }
+  .brand-watermark{
+    position:absolute;top:50%;left:50%;z-index:0;
+    transform:translate(-50%,-50%);
+    width:126px;height:126px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle, rgba(255,255,255,0.07), transparent 72%);
+    animation:watermarkPulse 5s ease-in-out infinite;
+  }
+  .brand-watermark img{
+    width:104px;height:104px;border-radius:50%;object-fit:cover;background:#fff;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.14), 0 24px 50px -14px rgba(0,0,0,0.65);
+  }
+  @keyframes watermarkPulse{
+    0%,100%{transform:translate(-50%,-50%) scale(1);}
+    50%{transform:translate(-50%,-50%) scale(1.05);}
+  }
+  @media(prefers-reduced-motion:reduce){.brand-watermark{animation:none;}}
+  .flip-hint{
+    position:absolute;top:10px;right:10px;z-index:3;
+    font-family:'JetBrains Mono';font-size:9px;color:rgba(255,255,255,0.85);
+    background:rgba(0,0,0,0.35);padding:4px 8px;border-radius:100px;
+    opacity:0.85;
+  }
+
+  .flip-back{
+    transform:rotateY(180deg);
+    background:var(--surface);padding:18px;
+    display:flex;flex-direction:column;justify-content:flex-start;gap:16px;
+  }
+  .approach-label{
+    font-family:'JetBrains Mono';font-size:9.5px;color:var(--accent-text);
+    text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px;
+  }
+  .approach p{font-size:12px;color:var(--text-muted);line-height:1.45;}
+  .client-tag{
+    font-family:'JetBrains Mono';font-size:10px;color:var(--accent-text);
+    text-transform:uppercase;letter-spacing:0.06em;
+  }
+  .client-name{font-family:'Bricolage Grotesque';font-weight:800;font-size:19px;margin-top:4px;letter-spacing:-0.01em;}
+  .client-industry{font-size:11.5px;color:var(--text-muted);margin-top:2px;}
+  .growth-row{display:flex;align-items:center;gap:8px;}
+  .growth-stat{display:flex;flex-direction:column;}
+  .growth-stat span{font-family:'JetBrains Mono';font-size:17px;font-weight:600;color:var(--text-muted);}
+  .growth-stat.hi span{color:var(--accent-text);}
+  .growth-stat small{font-size:9.5px;color:var(--text-muted);}
+  .growth-arrow{color:var(--text-muted);font-size:13px;}
+  .growth-bars{display:flex;flex-direction:column;gap:5px;}
+  .growth-bars .bar{height:5px;border-radius:100px;background:var(--surface-2);overflow:hidden;}
+  .growth-bars .bar i{display:block;height:100%;border-radius:100px;background:var(--accent);}
+  .growth-meta{display:flex;gap:18px;}
+  .growth-meta div{display:flex;flex-direction:column;}
+  .growth-meta b{font-family:'JetBrains Mono';font-size:14px;}
+  .growth-meta span{font-size:10px;color:var(--text-muted);}
+  .growth-result{font-size:12px;color:var(--text);font-style:italic;line-height:1.4;margin-top:auto;padding-top:12px;border-top:1px solid var(--border);}
+
+  .wc1{background:linear-gradient(200deg,#26305c,#0d0f1e 75%);}
+  .wc5{background:linear-gradient(200deg,#2b3560,#0e1020 75%);}
+  .wc8{background:linear-gradient(200deg,#191d3a,#0a0b16 75%);}
+
+  /* TESTIMONIALS */
+  .quotes{display:grid;gap:20px;grid-template-columns:1fr;}
+  @media(min-width:760px){.quotes{grid-template-columns:repeat(3,1fr);}}
+  .quote{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:28px 24px;display:flex;flex-direction:column;justify-content:space-between;
+    min-height:210px;
+  }
+  .quote p{font-size:15px;color:var(--text);margin-bottom:20px;}
+  .quote .who{font-size:13px;color:var(--text-muted);}
+  .quote .who b{color:var(--text);}
+
+  /* CONTACT */
+  .contact{
+    background:var(--surface);border:1px solid var(--border);border-radius:20px;
+    padding:52px 36px;display:grid;gap:44px;grid-template-columns:1fr;
+  }
+  @media(min-width:860px){.contact{grid-template-columns:0.9fr 1.1fr;padding:60px;}}
+  .contact h2{margin-bottom:14px;}
+  .contact p{color:var(--text-muted);max-width:380px;margin-bottom:24px;}
+  .socials{display:flex;gap:14px;}
+  .socials a{
+    font-family:'JetBrains Mono';font-size:12px;color:var(--text-muted);
+    border:1px solid var(--border);padding:8px 14px;border-radius:100px;
+  }
+  .socials a:hover{border-color:var(--accent-text);color:var(--accent-text);}
+  form{display:flex;flex-direction:column;gap:14px;}
+  .form-row{display:grid;gap:14px;grid-template-columns:1fr;}
+  @media(min-width:520px){.form-row{grid-template-columns:1fr 1fr;}}
+  input,textarea{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:10px;
+    padding:13px 14px;color:var(--text);font-family:'Inter';font-size:14px;
+    outline:none;transition:border-color .2s;
+  }
+  input:focus,textarea:focus{border-color:var(--accent);}
+  textarea{resize:vertical;min-height:90px;}
+  .form-note{font-size:12px;color:var(--text-muted);margin-top:2px;}
+
+  footer{padding:36px 0 48px;border-top:1px solid var(--border);}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
+    font-size:13px;color:var(--text-muted);align-items:center;}
+  .footer-brand{display:flex;align-items:center;gap:9px;}
+  .footer-mark{width:20px;height:20px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+
+  ::selection{background:var(--accent);color:var(--accent-ink);}
+
+  /* SCROLL REVEAL */
+  [data-reveal]{
+    opacity:0;transform:translateY(28px);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  [data-reveal].in-view{opacity:1;transform:none;}
+  .pillars [data-reveal]:nth-child(1){transition-delay:0s;}
+  .pillars [data-reveal]:nth-child(2){transition-delay:.1s;}
+  .pillars [data-reveal]:nth-child(3){transition-delay:.2s;}
+  .method-list [data-reveal]:nth-child(1){transition-delay:0s;}
+  .method-list [data-reveal]:nth-child(2){transition-delay:.08s;}
+  .method-list [data-reveal]:nth-child(3){transition-delay:.16s;}
+  .method-list [data-reveal]:nth-child(4){transition-delay:.24s;}
+  .work-grid [data-reveal]:nth-child(1){transition-delay:0s;}
+  .work-grid [data-reveal]:nth-child(2){transition-delay:.06s;}
+  .work-grid [data-reveal]:nth-child(3){transition-delay:.12s;}
+  .work-grid [data-reveal]:nth-child(4){transition-delay:.18s;}
+  .work-grid [data-reveal]:nth-child(5){transition-delay:.24s;}
+  .work-grid [data-reveal]:nth-child(6){transition-delay:.30s;}
+  .work-grid [data-reveal]:nth-child(7){transition-delay:.36s;}
+  .work-grid [data-reveal]:nth-child(8){transition-delay:.42s;}
+  .quotes [data-reveal]:nth-child(1){transition-delay:0s;}
+  .quotes [data-reveal]:nth-child(2){transition-delay:.1s;}
+  .quotes [data-reveal]:nth-child(3){transition-delay:.2s;}
+
+  /* HERO copy entrance (no scroll needed, runs on load) */
+  .hero-anim{opacity:0;transform:translateY(18px);animation:heroIn .8s cubic-bezier(.2,.8,.2,1) forwards;}
+  .hero .eyebrow.hero-anim{animation-delay:.05s;}
+  .hero h1.hero-anim{animation-delay:.15s;}
+  .hero p.lead.hero-anim{animation-delay:.28s;}
+  .hero .hero-actions.hero-anim{animation-delay:.4s;}
+  .hero .stat-row.hero-anim{animation-delay:.5s;}
+  @keyframes heroIn{to{opacity:1;transform:none;}}
+
+  /* WORK CARD hover tilt */
+  .flip-card{transition:transform .25s ease;}
+  .flip-card:hover{transform:translateY(-4px);}
+  .flip-card.flipped:hover{transform:none;}
+  .flip-front{transition:box-shadow .25s ease;}
+  .flip-card:hover .flip-front{box-shadow:0 20px 40px -16px rgba(0,0,0,0.55);}
+
+  .btn-primary{position:relative;overflow:hidden;}
+  .btn-primary:hover{box-shadow:0 10px 26px -8px rgba(245,185,66,0.55);}
+
+  .stat b{transition:none;}
+
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto !important;animation:none !important;transition:none !important;}
+    [data-reveal]{opacity:1;transform:none;}
+    .hero-anim{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="logo" href="#top">
+      <img class="logo-mark" src="untapped-logo.png" alt="Untapped logo">
+      Mufaddal Taj
+    </a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="btn btn-primary nav-cta" href="#contact">Book a call</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="spotlight" id="spotlight"></div>
+    <div class="wrap hero-grid">
+      <div style="position:relative;">
+        <div class="eyebrow hero-anim">Social media growth strategist</div>
+        <h1 class="hero-anim">Hooks that stop the scroll.<br><em>Reels</em> that grow the business.</h1>
+        <p class="lead hero-anim">I build content systems for founders and brands who want Instagram to actually move revenue — not just rack up views.</p>
+        <div class="hero-actions hero-anim" style="position:relative;">
+          <a class="btn btn-primary" href="#contact">Book a strategy call</a>
+          <a class="btn btn-ghost" href="#work">See the work ↓</a>
+          <svg class="hero-scribble" id="scribble" viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4,4 C30,2 55,18 60,34 C64,46 50,52 40,44 C34,39 40,30 52,32 C72,35 88,44 96,40" />
+            <path d="M88,32 L98,40 L86,46" fill="none" />
+          </svg>
+        </div>
+        <div class="stat-row hero-anim">
+          <div class="stat"><b data-count="40" data-suffix="+">0+</b><span>brands scaled</span></div>
+          <div class="stat"><b data-count="120" data-suffix="M+">0M+</b><span>views generated</span></div>
+          <div class="stat"><b data-count="3.2" data-suffix="s">0s</b><span>avg. hook retention</span></div>
+        </div>
+      </div>
+
+      <div class="reel-stack">
+        <div class="reel-card r1">
+          <div class="progress"><i style="width:70%"></i></div>
+          <div class="chrome"><span>REEL · 0:14</span><span class="music">♪ original audio</span></div>
+          <div class="play-icon"></div>
+          <div class="fill">
+            <div class="side">
+              <div>♡<span class="count">12.4K</span></div>
+              <div>💬<span class="count">318</span></div>
+              <div>↗<span class="count">Share</span></div>
+            </div>
+            <div class="user"><span class="avatar"></span><span>untapped_mufaddal</span><span class="follow">Follow</span></div>
+            <div class="tag">HOOK · 0:01</div>
+            <div class="cap">"Nobody's watching your reel past second 2 — here's why"</div>
+          </div>
+        </div>
+        <div class="reel-card r2">
+          <div class="progress"><i style="width:40%"></i></div>
+          <div class="chrome"><span>REEL · 0:22</span><span class="music">♪ case study audio</span></div>
+          <div class="play-icon"></div>
+          <div class="fill">
+            <div class="side">
+              <div>♡<span class="count">8.1K</span></div>
+              <div>💬<span class="count">204</span></div>
+              <div>↗<span class="count">Share</span></div>
+            </div>
+            <div class="user"><span class="avatar"></span><span>untapped_mufaddal</span><span class="follow">Follow</span></div>
+            <div class="tag">CASE STUDY</div>
+            <div class="cap">How we took a coffee brand from 900 → 210K followers</div>
+          </div>
+        </div>
+        <div class="reel-card r3">
+          <div class="progress"><i style="width:85%"></i></div>
+          <div class="chrome"><span>REEL · 0:09</span><span class="music">♪ voiceover</span></div>
+          <div class="play-icon"></div>
+          <div class="fill">
+            <div class="side">
+              <div>♡<span class="count">21.7K</span></div>
+              <div>💬<span class="count">540</span></div>
+              <div>↗<span class="count">Share</span></div>
+            </div>
+            <div class="user"><span class="avatar"></span><span>untapped_mufaddal</span><span class="follow">Follow</span></div>
+            <div class="tag">FRAMEWORK</div>
+            <div class="cap">The 4-part hook formula I use for every client</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP -->
+  <div class="proof">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="proof-item"><b>Retail</b> · brand growth</span>
+        <span class="proof-item"><b>F&amp;B</b> · reel content systems</span>
+        <span class="proof-item"><b>Real estate</b> · founder personal brand</span>
+        <span class="proof-item"><b>SaaS</b> · audience-led launches</span>
+        <span class="proof-item"><b>Fitness</b> · creator management</span>
+        <span class="proof-item"><b>Retail</b> · brand growth</span>
+        <span class="proof-item"><b>F&amp;B</b> · reel content systems</span>
+        <span class="proof-item"><b>Real estate</b> · founder personal brand</span>
+        <span class="proof-item"><b>SaaS</b> · audience-led launches</span>
+        <span class="proof-item"><b>Fitness</b> · creator management</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT I DO -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">What I do</div>
+        <h2>Three things I actually control</h2>
+        <p>Growth isn't luck. It's a hook, a system, and a strategy — run consistently.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar" data-reveal>
+          <span class="num">01</span>
+          <h3>Hook systems</h3>
+          <p>The first 1.5 seconds decide everything. I write and test hook frameworks specific to your niche, not generic templates.</p>
+        </div>
+        <div class="pillar" data-reveal>
+          <span class="num">02</span>
+          <h3>Content engines</h3>
+          <p>A repeatable pipeline — batch filming, editing rhythm, posting cadence — so growth doesn't depend on one viral hit.</p>
+        </div>
+        <div class="pillar" data-reveal>
+          <span class="num">03</span>
+          <h3>Audience growth</h3>
+          <p>Turning views into a real audience: retention, saves, shares, and a following that actually converts to customers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section id="method">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">The method</div>
+        <h2>How we work together</h2>
+        <p>Four stages, run in order — every client goes through the same process.</p>
+      </div>
+      <div class="method-list">
+        <div class="method-item" data-reveal>
+          <div class="num">01</div>
+          <div><h3>Audit</h3><p>I review your last 90 days of content: what's holding retention back, and where the biggest opportunity sits.</p></div>
+        </div>
+        <div class="method-item" data-reveal>
+          <div class="num">02</div>
+          <div><h3>Strategy</h3><p>A content pillar map and hook framework built around your brand voice and audience — not a copy-paste playbook.</p></div>
+        </div>
+        <div class="method-item" data-reveal>
+          <div class="num">03</div>
+          <div><h3>Production</h3><p>Scripting, filming direction, and editing standards so every reel ships to the same bar.</p></div>
+        </div>
+        <div class="method-item" data-reveal>
+          <div class="num">04</div>
+          <div><h3>Scale</h3><p>Weekly performance review, doubling down on what retains, cutting what doesn't.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATEMENT BREAK -->
+  <section class="statement">
+    <div class="wrap">
+      <p class="statement-text" data-reveal>Most brands post content.<br>Yours will post <span>hooks that get finished.</span></p>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head-row">
+        <div class="section-head" data-reveal style="margin-bottom:0;">
+          <div class="eyebrow">Selected work</div>
+          <h2>Real clients. Real growth.</h2>
+          <p>Tap a reel to see the growth behind it.</p>
+        </div>
+        <div class="work-index" data-reveal>01 <span>/ 03</span></div>
+      </div>
+      <div class="work-grid">
+
+        <div class="flip-card" data-reveal tabindex="0" aria-label="Y-Tal Plus — hover to see growth results">
+          <div class="flip-inner">
+            <div class="flip-front wc1">
+              <video class="reel-video" muted loop playsinline autoplay preload="metadata" poster="reels/ytal-plus-poster.jpg">
+                <source src="reels/ytal-plus.mp4" type="video/mp4">
+              </video>
+              <div class="progress"><i></i></div>
+              <div class="brand-row"><span class="brand-label">Y-Tal Plus</span></div>
+              <div class="brand-watermark"><img src="yttal.png" alt="Y-Tal Plus logo"></div>
+              <div class="play-icon"></div>
+              <div class="fill"><span class="views">240K views</span><span class="cap">The tool demo that outsold our catalog</span></div>
+              <div class="flip-hint">Hover for growth ↻</div>
+            </div>
+            <div class="flip-back">
+              <div>
+                <span class="client-tag">Client</span>
+                <div class="client-name">Y-Tal Plus™</div>
+                <div class="client-industry">Industrial hardware &amp; machinery</div>
+              </div>
+              <div class="approach">
+                <span class="approach-label">Approach</span>
+                <p>Product-in-hand demos replacing static catalog photos — every reel opens with a real machine in use, not a spec sheet.</p>
+              </div>
+              <div class="growth-row">
+                <div class="growth-stat"><span>1.1K</span><small>before</small></div>
+                <div class="growth-arrow">→</div>
+                <div class="growth-stat hi"><span>3.3K</span><small>8 months</small></div>
+              </div>
+              <div class="growth-bars">
+                <div class="bar"><i style="width:33%"></i></div>
+                <div class="bar"><i style="width:100%"></i></div>
+              </div>
+              <div class="growth-meta">
+                <div><b>240K</b><span>avg. reel views</span></div>
+                <div><b>6.8%</b><span>engagement rate</span></div>
+              </div>
+              <p class="growth-result">"Buyers now ask for us by name before they even call."</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" data-reveal tabindex="0" aria-label="ClearSpaces, Counsellor Munira — hover to see growth results">
+          <div class="flip-inner">
+            <div class="flip-front wc5">
+              <video class="reel-video" muted loop playsinline autoplay preload="metadata" poster="reels/clearspaces-poster.jpg">
+                <source src="reels/clearspaces.mp4" type="video/mp4">
+              </video>
+              <div class="progress"><i></i></div>
+              <div class="brand-row"><span class="brand-label">ClearSpaces</span></div>
+              <div class="brand-watermark"><img src="councillor.png" alt="ClearSpaces logo"></div>
+              <div class="play-icon"></div>
+              <div class="fill"><span class="views">310K views</span><span class="cap">Why "I'm fine" isn't fine</span></div>
+              <div class="flip-hint">Hover for growth ↻</div>
+            </div>
+            <div class="flip-back">
+              <div>
+                <span class="client-tag">Client</span>
+                <div class="client-name">ClearSpaces — Counsellor Munira</div>
+                <div class="client-industry">Online counselling &amp; therapy</div>
+              </div>
+              <div class="approach">
+                <span class="approach-label">Approach</span>
+                <p>Vulnerable, specific hooks that name the exact thought a viewer is already having — not generic mental-health tips.</p>
+              </div>
+              <div class="growth-row">
+                <div class="growth-stat"><span>3.4K</span><small>before</small></div>
+                <div class="growth-arrow">→</div>
+                <div class="growth-stat hi"><span>14.5K</span><small>10 months</small></div>
+              </div>
+              <div class="growth-bars">
+                <div class="bar"><i style="width:23%"></i></div>
+                <div class="bar"><i style="width:100%"></i></div>
+              </div>
+              <div class="growth-meta">
+                <div><b>310K</b><span>avg. reel views</span></div>
+                <div><b>11.2%</b><span>engagement rate</span></div>
+              </div>
+              <p class="growth-result">"Booked out for consultations two weeks in advance."</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" data-reveal tabindex="0" aria-label="Century GlassArt — hover to see growth results">
+          <div class="flip-inner">
+            <div class="flip-front wc8">
+              <video class="reel-video" muted loop playsinline autoplay preload="metadata" poster="reels/century-glassart-poster.jpg">
+                <source src="reels/century-glassart.mp4" type="video/mp4">
+              </video>
+              <div class="progress"><i></i></div>
+              <div class="brand-row"><span class="brand-label">Century GlassArt</span></div>
+              <div class="brand-watermark"><img src="century_glass.png" alt="Century GlassArt logo"></div>
+              <div class="play-icon"></div>
+              <div class="fill"><span class="views">180K views</span><span class="cap">45 years of craft, 8 seconds to show it</span></div>
+              <div class="flip-hint">Hover for growth ↻</div>
+            </div>
+            <div class="flip-back">
+              <div>
+                <span class="client-tag">Client</span>
+                <div class="client-name">Century GlassArt</div>
+                <div class="client-industry">Bespoke glass &amp; mirror studio</div>
+              </div>
+              <div class="approach">
+                <span class="approach-label">Approach</span>
+                <p>Behind-the-craft process reels showing 45 years of glasswork most customers never got to see.</p>
+              </div>
+              <div class="growth-row">
+                <div class="growth-stat"><span>950</span><small>before</small></div>
+                <div class="growth-arrow">→</div>
+                <div class="growth-stat hi"><span>2.9K</span><small>6 months</small></div>
+              </div>
+              <div class="growth-bars">
+                <div class="bar"><i style="width:32%"></i></div>
+                <div class="bar"><i style="width:100%"></i></div>
+              </div>
+              <div class="growth-meta">
+                <div><b>180K</b><span>avg. reel views</span></div>
+                <div><b>7.5%</b><span>engagement rate</span></div>
+              </div>
+              <p class="growth-result">"Custom orders now booked three months out."</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS / TESTIMONIALS -->
+  <section id="results">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Results</div>
+        <h2>What clients say</h2>
+      </div>
+      <div class="quotes">
+        <div class="quote" data-reveal>
+          <p>"Our reels went from 500 views to consistently hitting six figures. Mufaddal rebuilt our hooks from scratch."</p>
+          <div class="who"><b>Founder</b> — DTC coffee brand</div>
+        </div>
+        <div class="quote" data-reveal>
+          <p>"He doesn't just make content, he built us a system our team still runs today."</p>
+          <div class="who"><b>Marketing lead</b> — fitness studio chain</div>
+        </div>
+        <div class="quote" data-reveal>
+          <p>"First person who explained retention to me in a way that actually changed how we film."</p>
+          <div class="who"><b>Founder</b> — real estate brand</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact" data-reveal>
+        <div>
+          <div class="eyebrow">Get in touch</div>
+          <h2>Let's grow your reels</h2>
+          <p>Tell me a bit about your brand and where your content is stuck. I read every message myself.</p>
+          <div class="socials">
+            <a href="https://instagram.com/untapped_mufaddal" target="_blank" rel="noopener">Instagram</a>
+            <a href="#contact">Email</a>
+          </div>
+        </div>
+        <form onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Thanks — I\'ll be in touch within 48 hours.';">
+          <div class="form-row">
+            <input type="text" placeholder="Your name" required>
+            <input type="text" placeholder="Business / brand" required>
+          </div>
+          <div class="form-row">
+            <input type="email" placeholder="Email" required>
+            <input type="text" placeholder="Instagram handle">
+          </div>
+          <textarea placeholder="What are you trying to grow?" required></textarea>
+          <button class="btn btn-primary" type="submit" style="align-self:flex-start;">Send message</button>
+          <span class="form-note">I'll reply within 48 hours.</span>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="footer-brand"><img src="untapped-logo.png" alt="Untapped logo" class="footer-mark">© 2026 Mufaddal Taj. Social media growth.</span>
+    <span>Based in the UAE · Working worldwide</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Header scroll state */
+  var header = document.querySelector('header');
+  function onScrollHeader(){
+    if(window.scrollY > 12) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  }
+  window.addEventListener('scroll', onScrollHeader, {passive:true});
+  onScrollHeader();
+
+  /* Hand-drawn CTA scribble */
+  var scribble = document.getElementById('scribble');
+  if(scribble){
+    setTimeout(function(){ scribble.classList.add('draw'); }, reduceMotion ? 0 : 1000);
+  }
+
+  /* Cursor-tracking spotlight in hero */
+  var heroEl = document.querySelector('.hero');
+  var spotlight = document.getElementById('spotlight');
+  if(heroEl && spotlight && !reduceMotion && matchMedia('(hover: hover)').matches){
+    heroEl.addEventListener('mousemove', function(e){
+      var r = heroEl.getBoundingClientRect();
+      var x = ((e.clientX - r.left) / r.width) * 100;
+      var y = ((e.clientY - r.top) / r.height) * 100;
+      spotlight.style.setProperty('--mx', x + '%');
+      spotlight.style.setProperty('--my', y + '%');
+    });
+  }
+
+  /* Magnetic buttons */
+  if(!reduceMotion && matchMedia('(hover: hover)').matches){
+    document.querySelectorAll('.btn').forEach(function(btn){
+      btn.addEventListener('mousemove', function(e){
+        var r = btn.getBoundingClientRect();
+        var mx = (e.clientX - r.left - r.width / 2) * 0.28;
+        var my = (e.clientY - r.top - r.height / 2) * 0.35;
+        btn.style.transform = 'translate(' + mx.toFixed(1) + 'px,' + my.toFixed(1) + 'px)';
+      });
+      btn.addEventListener('mouseleave', function(){
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  /* Scroll reveal */
+  if('IntersectionObserver' in window && !reduceMotion){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('[data-reveal]').forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  /* Animated stat counters */
+  function animateCount(el){
+    var target = parseFloat(el.dataset.count);
+    var suffix = el.dataset.suffix || '';
+    var decimals = (el.dataset.count.split('.')[1] || '').length;
+    var duration = 1100, startTime = null;
+    function step(ts){
+      if(!startTime) startTime = ts;
+      var p = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * eased).toFixed(decimals) + suffix;
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var statRow = document.querySelector('.stat-row');
+  if(statRow){
+    if('IntersectionObserver' in window && !reduceMotion){
+      var statIo = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.querySelectorAll('[data-count]').forEach(animateCount);
+            statIo.unobserve(entry.target);
+          }
+        });
+      }, {threshold:0.4});
+      statIo.observe(statRow);
+    } else {
+      statRow.querySelectorAll('[data-count]').forEach(function(el){
+        el.textContent = el.dataset.count + (el.dataset.suffix || '');
+      });
+    }
+  }
+
+  /* Hero reel-stack parallax on scroll */
+  var reelStack = document.querySelector('.reel-stack');
+  if(reelStack && !reduceMotion){
+    var ticking = false;
+    window.addEventListener('scroll', function(){
+      if(!ticking){
+        window.requestAnimationFrame(function(){
+          var y = window.scrollY;
+          reelStack.style.transform = 'translateY(' + Math.min(y * 0.12, 60) + 'px)';
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, {passive:true});
+  }
+
+  /* Reel cards: entrance + idle float + hover "play" scale-up, all in one rAF loop
+     so nothing fights a CSS animation/transition on the same transform property. */
+  var reelCards = Array.prototype.slice.call(document.querySelectorAll('.reel-card'));
+  if(reelCards.length){
+    if(reduceMotion){
+      reelCards.forEach(function(card){
+        card.style.opacity = 1;
+        card.style.transform = 'none';
+        card.classList.add('settled');
+      });
+    } else {
+      var states = reelCards.map(function(card, i){
+        var cs = getComputedStyle(card);
+        return {
+          card:card,
+          rot: parseFloat(cs.getPropertyValue('--rot')) || 0,
+          enterDelay: parseFloat(cs.getPropertyValue('--enter')) || 0,
+          phase: i * 1.7,
+          hovered:false,
+          curY:28, curScale:.96, curRot:0, curOpacity:0,
+          settled:false
+        };
+      });
+
+      reelCards.forEach(function(card, i){
+        card.addEventListener('mouseenter', function(){ states[i].hovered = true; card.classList.add('playing'); });
+        card.addEventListener('mouseleave', function(){ states[i].hovered = false; card.classList.remove('playing'); });
+      });
+
+      var startTime = null;
+      function loop(now){
+        if(startTime === null) startTime = now;
+        var elapsed = now - startTime;
+
+        states.forEach(function(s){
+          var t = elapsed - s.enterDelay;
+
+          if(t <= 0){
+            /* waiting to enter */
+            s.card.style.opacity = 0;
+            return;
+          }
+
+          if(t < 800){
+            var p = t / 800;
+            var eased = 1 - Math.pow(1 - p, 3);
+            s.curY = 28 * (1 - eased);
+            s.curScale = 0.96 + 0.04 * eased;
+            s.curRot = s.rot * eased;
+            s.curOpacity = eased;
+          } else {
+            s.curOpacity = 1;
+            if(!s.settled){ s.settled = true; s.card.classList.add('settled'); }
+            var idleT = (t - 800) / 1000;
+            var idleY = Math.sin(idleT + s.phase) * 7;
+            var targetY = s.hovered ? -12 : idleY;
+            var targetScale = s.hovered ? 1.1 : 1;
+            var targetRot = s.hovered ? 0 : s.rot;
+            s.curY += (targetY - s.curY) * 0.1;
+            s.curScale += (targetScale - s.curScale) * 0.1;
+            s.curRot += (targetRot - s.curRot) * 0.1;
+          }
+
+          s.card.style.opacity = s.curOpacity;
+          s.card.style.transform = 'translateY(' + s.curY.toFixed(2) + 'px) rotate(' + s.curRot.toFixed(2) + 'deg) scale(' + s.curScale.toFixed(3) + ')';
+        });
+
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    }
+  }
+
+  /* Reel videos: only play while actually on screen (perf), pause otherwise */
+  var reelVideos = document.querySelectorAll('.reel-video');
+  if(reelVideos.length){
+    if(reduceMotion){
+      reelVideos.forEach(function(v){ v.removeAttribute('autoplay'); v.pause(); });
+    } else if('IntersectionObserver' in window){
+      var videoIo = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          var v = entry.target;
+          if(entry.isIntersecting){ v.play().catch(function(){}); }
+          else { v.pause(); }
+        });
+      }, {threshold:0.25});
+      reelVideos.forEach(function(v){ videoIo.observe(v); });
+    }
+  }
+
+  /* Flip cards: pure hover/focus flip (CSS-driven) — just trigger the "playing" progress bar */
+  if(!reduceMotion && matchMedia('(hover: hover)').matches){
+    document.querySelectorAll('.flip-card').forEach(function(card){
+      card.addEventListener('mouseenter', function(){ card.classList.add('playing'); });
+      card.addEventListener('mouseleave', function(){ card.classList.remove('playing'); });
+    });
+  }
+})();
+</script>
+</body>
+</html>
