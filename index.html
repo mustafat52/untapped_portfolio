@@ -202,6 +202,10 @@
   .reel-card .cover{
     position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   }
+  .reel-card .scrim{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.08) 32%, rgba(0,0,0,0.05) 55%, rgba(0,0,0,0.72) 100%);
+  }
   .reel-card .fill{
     position:absolute;inset:0;
     display:flex;flex-direction:column;justify-content:flex-end;
@@ -551,7 +555,7 @@
 
 <header>
   <nav>
-    <a class="logo" href="https://www.instagram.com/untappedcontent/" target="_blank" rel="noopener">
+    <a class="logo" href="https://instagram.com/untapped_mufaddal" target="_blank" rel="noopener">
       <img class="logo-mark" src="untapped-logo.png" alt="Untapped logo">
       Mufaddal Taj
     </a>
@@ -594,7 +598,8 @@
 
       <div class="reel-stack">
         <div class="reel-card r1">
-          <img class="cover" src="reels/hook-cover.jpg" alt="" onerror="this.style.display='none'">
+          <img class="cover" src="reels-hook-cover.png" alt="" onerror="this.style.display='none'">
+          <div class="scrim"></div>
           <div class="progress"><i style="width:70%"></i></div>
           <div class="chrome"><span>REEL · 0:14</span><span class="music">♪ original audio</span></div>
           <div class="play-icon"></div>
@@ -610,7 +615,8 @@
           </div>
         </div>
         <div class="reel-card r2">
-          <img class="cover" src="reels/case-study-cover.jpg" alt="" onerror="this.style.display='none'">
+          <img class="cover" src="reels-case-study-cover.png" alt="" onerror="this.style.display='none'">
+          <div class="scrim"></div>
           <div class="progress"><i style="width:40%"></i></div>
           <div class="chrome"><span>REEL · 0:22</span><span class="music">♪ case study audio</span></div>
           <div class="play-icon"></div>
@@ -626,7 +632,8 @@
           </div>
         </div>
         <div class="reel-card r3">
-          <img class="cover" src="reels/framework-cover.jpg" alt="" onerror="this.style.display='none'">
+          <img class="cover" src="reels-framework-cover.png" alt="" onerror="this.style.display='none'">
+          <div class="scrim"></div>
           <div class="progress"><i style="width:85%"></i></div>
           <div class="chrome"><span>REEL · 0:09</span><span class="music">♪ voiceover</span></div>
           <div class="play-icon"></div>
