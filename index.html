@@ -199,6 +199,9 @@
   }
   .reel-card.settled{transition:box-shadow .35s ease;}
   .reel-card:hover{box-shadow:0 40px 80px -18px rgba(0,0,0,0.75);}
+  .reel-card .cover{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  }
   .reel-card .fill{
     position:absolute;inset:0;
     display:flex;flex-direction:column;justify-content:flex-end;
@@ -232,8 +235,8 @@
   }
   .reel-card .user .avatar{
     width:20px;height:20px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),#7a2f5a);
-    flex-shrink:0;
+    object-fit:cover;flex-shrink:0;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.2);
   }
   .reel-card .user span{font-size:10px;font-weight:600;color:#fff;}
   .reel-card .user .follow{
@@ -591,6 +594,7 @@
 
       <div class="reel-stack">
         <div class="reel-card r1">
+          <img class="cover" src="reels/hook-cover.jpg" alt="" onerror="this.style.display='none'">
           <div class="progress"><i style="width:70%"></i></div>
           <div class="chrome"><span>REEL · 0:14</span><span class="music">♪ original audio</span></div>
           <div class="play-icon"></div>
@@ -600,12 +604,13 @@
               <div>💬<span class="count">318</span></div>
               <div>↗<span class="count">Share</span></div>
             </div>
-            <div class="user"><span class="avatar"></span><span>untapped_mufaddal</span><span class="follow">Follow</span></div>
+            <div class="user"><img class="avatar" src="untapped-logo.png" alt="untapped_mufaddal"><span>untapped_mufaddal</span><span class="follow">Follow</span></div>
             <div class="tag">HOOK · 0:01</div>
             <div class="cap">"Nobody's watching your reel past second 2 — here's why"</div>
           </div>
         </div>
         <div class="reel-card r2">
+          <img class="cover" src="reels/case-study-cover.jpg" alt="" onerror="this.style.display='none'">
           <div class="progress"><i style="width:40%"></i></div>
           <div class="chrome"><span>REEL · 0:22</span><span class="music">♪ case study audio</span></div>
           <div class="play-icon"></div>
@@ -615,12 +620,13 @@
               <div>💬<span class="count">204</span></div>
               <div>↗<span class="count">Share</span></div>
             </div>
-            <div class="user"><span class="avatar"></span><span>untapped_mufaddal</span><span class="follow">Follow</span></div>
+            <div class="user"><img class="avatar" src="untapped-logo.png" alt="untapped_mufaddal"><span>untapped_mufaddal</span><span class="follow">Follow</span></div>
             <div class="tag">CASE STUDY</div>
             <div class="cap">How we took a coffee brand from 900 → 210K followers</div>
           </div>
         </div>
         <div class="reel-card r3">
+          <img class="cover" src="reels/framework-cover.jpg" alt="" onerror="this.style.display='none'">
           <div class="progress"><i style="width:85%"></i></div>
           <div class="chrome"><span>REEL · 0:09</span><span class="music">♪ voiceover</span></div>
           <div class="play-icon"></div>
@@ -630,7 +636,7 @@
               <div>💬<span class="count">540</span></div>
               <div>↗<span class="count">Share</span></div>
             </div>
-            <div class="user"><span class="avatar"></span><span>untapped_mufaddal</span><span class="follow">Follow</span></div>
+            <div class="user"><img class="avatar" src="untapped-logo.png" alt="untapped_mufaddal"><span>untapped_mufaddal</span><span class="follow">Follow</span></div>
             <div class="tag">FRAMEWORK</div>
             <div class="cap">The 4-part hook formula I use for every client</div>
           </div>
