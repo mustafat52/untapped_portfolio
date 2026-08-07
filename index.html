@@ -232,7 +232,7 @@ header.scrolled nav{padding:13px 32px;}
 }
 .hero .wrap{position:relative;z-index:1;}
 .hero-grid{
-  display:grid;grid-template-columns:1fr;gap:56px;align-items:center;
+  display:grid;grid-template-columns:1fr;gap:56px;align-items:start;
 }
 @media(min-width:960px){.hero-grid{grid-template-columns:1.05fr 0.95fr;}}
 .eyebrow{
@@ -287,7 +287,7 @@ header.scrolled nav{padding:13px 32px;}
 .stat span{font-size:13px;color:var(--text-muted);font-family:'Space Mono';}
 
 /* PHONE / REEL CARD - signature element */
-.reel-stack{position:relative;height:460px;will-change:transform;}
+.reel-stack{position:relative;height:460px;will-change:transform;margin-top:clamp(20px,6vw,64px);}
 .reel-card{
   position:absolute;width:190px;aspect-ratio:9/16;border-radius:24px;
   border:1px solid var(--border);
@@ -376,8 +376,17 @@ header.scrolled nav{padding:13px 32px;}
 }
 .r1{background:linear-gradient(160deg,#3a1440,#12081c 70%);top:0;left:6%;--rot:-7deg;--enter:0;z-index:2;}
 .r2{background:linear-gradient(160deg,#1c2a4a,#0d1220 70%);top:52px;left:38%;--rot:4deg;--enter:150;z-index:3;}
-.r3{background:linear-gradient(160deg,#3d2416,#150c08 70%);top:110px;left:66%;--rot:-3deg;--enter:300;z-index:1;display:none;}
-@media(min-width:520px){.r3{display:block;}}
+.r3{background:linear-gradient(160deg,#3d2416,#150c08 70%);top:110px;left:66%;--rot:-3deg;--enter:300;z-index:1;}
+/* Below ~640px the 190px card width no longer fits 3 across (r3's left:66% + width
+   runs past the viewport edge) — shrink all three and tighten the stagger so all
+   three stay inside the container instead of hiding the third one. */
+@media(max-width:639px){
+  .reel-stack{height:300px;}
+  .reel-card{width:124px;}
+  .r1{top:0;left:0%;}
+  .r2{top:26px;left:33%;}
+  .r3{top:54px;left:60%;}
+}
 
 /* SECTIONS */
 section{padding:96px 0;}
@@ -1056,21 +1065,23 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
           <p>Tell me a bit about your brand and where your content is stuck. I read every message myself.</p>
           <div class="socials">
             <a href="https://www.instagram.com/untappedcontent/" target="_blank" rel="noopener">Instagram</a>
-            <a href="#contact">Email</a>
+            <a href="mailto:untappedtaj@gmail.com">Email</a>
           </div>
         </div>
-        <form onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Thanks — I\'ll be in touch within 48 hours.';">
+        <form id="contactForm">
+          <input type="hidden" name="access_key" value="5ac5628f-dff8-43bf-be3f-ec79b5b7e749">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-row">
-            <input type="text" placeholder="Your name" required>
-            <input type="text" placeholder="Business / brand" required>
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="text" name="business" placeholder="Business / brand" required>
           </div>
           <div class="form-row">
-            <input type="email" placeholder="Email" required>
-            <input type="text" placeholder="Instagram handle">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="instagram" placeholder="Instagram handle">
           </div>
-          <textarea placeholder="What are you trying to grow?" required></textarea>
+          <textarea name="message" placeholder="What are you trying to grow?" required></textarea>
           <button class="btn btn-primary" type="submit" style="align-self:flex-start;">Send message</button>
-          <span class="form-note">I'll reply within 48 hours.</span>
+          <span class="form-note" id="formNote">I'll reply within 48 hours.</span>
         </form>
       </div>
     </div>
@@ -1399,8 +1410,55 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
       });
     });
   }
+
+  /* Contact form → Web3Forms (no backend needed). Swap the access_key on the
+     hidden input above with your own, free at https://web3forms.com */
+  var contactForm = document.getElementById('contactForm');
+  var formNote = document.getElementById('formNote');
+  if(contactForm){
+    contactForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = contactForm.querySelector('button[type="submit"]');
+      var originalBtnText = btn.textContent;
+      var originalNote = formNote.textContent;
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      formNote.textContent = 'Sending your message…';
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(contactForm)))
+      })
+        .then(function(res){ return res.json(); })
+        .then(function(data){
+          if(data.success){
+            contactForm.reset();
+            btn.textContent = 'Sent ✓';
+            formNote.textContent = "Thanks — I'll be in touch within 48 hours.";
+          } else {
+            throw new Error(data.message || 'Submission failed');
+          }
+        })
+        .catch(function(){
+          btn.disabled = false;
+          btn.textContent = originalBtnText;
+          formNote.textContent = "Something went wrong — please email me directly instead.";
+        })
+        .finally(function(){
+          setTimeout(function(){
+            if(btn.textContent === 'Sent ✓'){
+              btn.disabled = false;
+              btn.textContent = originalBtnText;
+              formNote.textContent = originalNote;
+            }
+          }, 4000);
+        });
+    });
+  }
 })();
 </script>
 
 </body>
-</html>+++
+</html>
