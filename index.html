@@ -187,7 +187,7 @@ header.scrolled nav{padding:13px 32px;}
 
 /* HERO */
 .hero{
-  padding:104px 0 72px;
+  padding:56px 0 72px;
   position:relative;
   overflow:hidden;
 }
@@ -238,16 +238,16 @@ header.scrolled nav{padding:13px 32px;}
 .eyebrow{
   display:inline-flex;align-items:center;gap:9px;
   font-family:'Space Mono';font-size:11.5px;letter-spacing:0.09em;
-  color:var(--lime);text-transform:uppercase;margin-bottom:24px;
+  color:var(--lime);text-transform:uppercase;margin-bottom:16px;
   background:var(--surface);border:1px solid var(--border-soft);
   padding:7px 14px 7px 10px;border-radius:100px;
 }
 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad-hook);box-shadow:0 0 8px 1px rgba(255,120,80,0.8);}
 .hero h1{
-  font-size:clamp(42px,8.4vw,104px);
+  font-size:clamp(38px,7vw,82px);
   letter-spacing:-0.02em;
-  margin-bottom:28px;
-  line-height:0.98;
+  margin-bottom:24px;
+  line-height:1;
 }
 .hero-scribble{
   position:absolute;pointer-events:none;
@@ -696,14 +696,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   var overlay = document.getElementById('introOverlay');
   if(!overlay) return;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var seen = false;
-  try{ seen = sessionStorage.getItem('utIntroSeen') === '1'; }catch(e){}
-  if(seen || reduce){
+  if(reduce){
     overlay.classList.add('intro-skip');
     return;
   }
   document.documentElement.classList.add('intro-active');
-  try{ sessionStorage.setItem('utIntroSeen','1'); }catch(e){}
 })();
 </script>
 <div class="reel-progress" id="reelProgress" aria-hidden="true"></div>
@@ -747,14 +744,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
           </svg>
         </div>
         <div class="stat-row hero-anim">
-          <div class="stat"><b data-count="40" data-suffix="+">0+</b><span>brands scaled</span></div>
-          <div class="stat"><b data-count="120" data-suffix="M+">0M+</b><span>views generated</span></div>
+          <div class="stat"><b data-count="16" data-suffix="+">0+</b><span>brands scaled</span></div>
+          <div class="stat"><b data-count="350" data-suffix="K+">0K+</b><span>views generated</span></div>
           <div class="stat"><b data-count="3.2" data-suffix="s">0s</b><span>avg. hook retention</span></div>
         </div>
       </div>
 
       <div class="reel-stack">
-        <div class="reel-card r1">
+        <div class="reel-card r1" data-reel-url="https://www.instagram.com/reel/Damb4qqK15b/?igsh=bnVsMHRoNWplaXpp">
           <img class="cover" src="reels-hook-cover.png" alt="" onerror="this.style.display='none'">
           <div class="scrim"></div>
           <div class="progress"><i style="width:70%"></i></div>
@@ -771,7 +768,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
             <div class="cap">"Nobody's watching your reel past second 2 — here's why"</div>
           </div>
         </div>
-        <div class="reel-card r2">
+        <div class="reel-card r2" data-reel-url="https://www.instagram.com/reel/Dako7PaoM96/?igsh=ampraW1jbGNydDN0">
           <img class="cover" src="reels-case-study-cover.png" alt="" onerror="this.style.display='none'">
           <div class="scrim"></div>
           <div class="progress"><i style="width:40%"></i></div>
@@ -788,7 +785,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
             <div class="cap">How we took a coffee brand from 900 → 210K followers</div>
           </div>
         </div>
-        <div class="reel-card r3">
+        <div class="reel-card r3" data-reel-url="https://www.instagram.com/reel/DY8zpv9xX3S/?igsh=MWNjazJoZ3AzanRoeA%3D%3D">
           <img class="cover" src="reels-framework-cover.png" alt="" onerror="this.style.display='none'">
           <div class="scrim"></div>
           <div class="progress"><i style="width:85%"></i></div>
@@ -986,43 +983,43 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
           </div>
         </div>
 
-        <div class="flip-card" data-reveal tabindex="0" aria-label="Century GlassArt — hover to see growth results">
+        <div class="flip-card" data-reveal tabindex="0" aria-label="She Rises — hover to see growth results">
           <div class="flip-inner">
             <div class="flip-front wc8">
-              <video class="reel-video" muted loop playsinline autoplay preload="metadata" poster="reels/century-glassart-poster.jpg">
-                <source src="reels/century-glassart.mp4" type="video/mp4">
+              <video class="reel-video" muted loop playsinline autoplay preload="metadata" poster="reels/she-rises-poster.jpg">
+                <source src="reels/she-rises.mp4" type="video/mp4">
               </video>
               <div class="progress"><i></i></div>
-              <div class="brand-row"><span class="brand-label">Century GlassArt</span></div>
-              <div class="brand-watermark"><img src="century_glass.png" alt="Century GlassArt logo"></div>
+              <div class="brand-row"><span class="brand-label">She Rises</span></div>
+              <div class="brand-watermark"><img src="she_rises.png" alt="She Rises logo"></div>
               <div class="play-icon"></div>
-              <div class="fill"><span class="views">180K views</span><span class="cap">45 years of craft, 8 seconds to show it</span></div>
+              <div class="fill"><span class="views">120K views</span><span class="cap">A safe space for women, one reel at a time</span></div>
               <div class="flip-hint">Hover for growth ↻</div>
             </div>
             <div class="flip-back">
               <div>
                 <span class="client-tag">Client</span>
-                <div class="client-name">Century GlassArt</div>
-                <div class="client-industry">Bespoke glass &amp; mirror studio</div>
+                <div class="client-name">She Rises</div>
+                <div class="client-industry">Dawoodi Bohra women's empowerment initiative</div>
               </div>
               <div class="approach">
                 <span class="approach-label">Approach</span>
-                <p>Behind-the-craft process reels showing 45 years of glasswork most customers never got to see.</p>
+                <p>Community-first storytelling reels spotlighting real women's voices and everyday empowerment moments.</p>
               </div>
               <div class="growth-row">
-                <div class="growth-stat"><span>950</span><small>before</small></div>
+                <div class="growth-stat"><span>1.2K</span><small>before</small></div>
                 <div class="growth-arrow">→</div>
-                <div class="growth-stat hi"><span>2.9K</span><small>6 months</small></div>
+                <div class="growth-stat hi"><span>12.3K</span><small>6 months</small></div>
               </div>
               <div class="growth-bars">
-                <div class="bar"><i style="width:32%"></i></div>
+                <div class="bar"><i style="width:10%"></i></div>
                 <div class="bar"><i style="width:100%"></i></div>
               </div>
               <div class="growth-meta">
-                <div><b>180K</b><span>avg. reel views</span></div>
-                <div><b>7.5%</b><span>engagement rate</span></div>
+                <div><b>120K</b><span>avg. reel views</span></div>
+                <div><b>6.8%</b><span>engagement rate</span></div>
               </div>
-              <p class="growth-result">"Custom orders now booked three months out."</p>
+              <p class="growth-result">"Our community finally has a voice that reaches thousands."</p>
             </div>
           </div>
         </div>
@@ -1459,6 +1456,19 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   }
 })();
 </script>
-
+<script>
+(function(){
+  document.querySelectorAll('.reel-card[data-reel-url]').forEach(function(card){
+    card.addEventListener('click', function(e){
+      var url = card.getAttribute('data-reel-url');
+      if(!url || url.indexOf('PASTE_REEL_LINK_HERE') !== -1) return; // no link set yet
+      var goToReel = window.confirm('Watch this reel on Instagram?');
+      if(goToReel){
+        window.open(url, '_blank', 'noopener');
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
