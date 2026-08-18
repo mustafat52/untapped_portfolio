@@ -84,7 +84,7 @@ html.intro-active .logo-mark{opacity:0;}
 }
 .intro-logo-wrap{
   width:min(40vw,188px);height:min(40vw,188px);
-  border-radius:38px;overflow:hidden;position:relative;
+  border-radius:50%;overflow:hidden;position:relative;
   box-shadow:0 40px 100px -30px rgba(0,0,0,0.7);
   transform-origin:center center;
   /* transform + border-radius during the travel are driven entirely by the
@@ -1346,7 +1346,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
 
       var travel = introWrap.animate(
         [
-          { transform:'translate(0px,0px) scale(1)', borderRadius:'38px' },
+          { transform:'translate(0px,0px) scale(1)', borderRadius:'50%' },
           { transform:'translate(' + dx + 'px,' + dy + 'px) scale(' + scale + ')', borderRadius:'50%' }
         ],
         { duration:700, easing:'cubic-bezier(.65,0,.35,1)', fill:'forwards' }
